@@ -69,6 +69,7 @@ void Panier::livrer()
 Produit * Panier::trouverProduitPlusCher()
 {
 	// TODO: Implementez la methode
+	return nullptr;
 }
 
 void Panier::afficher() const

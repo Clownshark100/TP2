@@ -56,7 +56,7 @@ bool Produit::operator<(Produit& produit)
 	return this->obtenirPrix() < produit.obtenirPrix();
 }
 
-bool Produit::operator==(Produit & produit)
+bool Produit::operator==(const Produit & produit) const
 {
 	return this->obtenirNom()       == produit.obtenirNom()
 		&& this->obtenirPrix()      == produit.obtenirPrix()

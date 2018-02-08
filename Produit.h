@@ -28,7 +28,7 @@ public:
 	//surcharges d'operateurs
 	bool operator>(Produit& produit);
 	bool operator<(Produit& produit);
-	bool operator==(Produit& produit);
+	bool operator==(const Produit& produit) const;
 	friend ostream& operator<<(ostream& os, Produit& produit);
 
 	void afficher() const;

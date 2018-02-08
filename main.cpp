@@ -73,7 +73,7 @@ int main()
 	paul.modifierPrenom("Paul");
 	paul.modifierIdentifiant(689);
 
-	cout << "Test identifiant paul: " << boolalpha << (689 == paul) << endl << endl;
+	//cout << "Test identifiant paul: " << boolalpha << (689 == paul) << endl << endl;
 
 	// Paul achete le produit p0
 

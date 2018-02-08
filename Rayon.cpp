@@ -75,7 +75,7 @@ ostream& operator<<(ostream &os,Rayon& rayon)
 	os << "Le rayon " << rayon.obtenirCategorie() << ":" << endl;
 	for (int i = 0; i < rayon.obtenirTousProduits().size(); i++)
 	{
-		os << rayon.obtenirTousProduits()[i];
+		os << *(rayon.obtenirTousProduits()[i]);
 	}
 	return os;
 }
