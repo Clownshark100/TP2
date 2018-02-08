@@ -1,77 +1,81 @@
 /********************************************
 * Titre: Travail pratique #2 - Rayon.cpp
 * Date: 25 janvier 2018
-* Auteur: Timoth�e CHAUVIN
+* Auteur: Daniel Nahum et Loic LeBlanc
 *******************************************/
 
 #include "Rayon.h"
-
+/** 
+*Constructeurs par defaut et par paraametres
+*/
 Rayon::Rayon(const string& cat) :
 	categorie_{ cat },
-	tousProduits_{ nullptr },
-	capaciteProduits_{ 0 },
-	nombreProduits_{ 0 }
+	tousProduits_{}
 {
 }
-
+/**
+* Destructeur de Rayon, rien a faire.
+*/
 Rayon::~Rayon()
 {
-	if (tousProduits_ != nullptr)
-		delete[] tousProduits_;
 }
 
 // Methodes d'acces
+/**
+* Accesseur de categorie_
+*/
 string Rayon::obtenirCategorie() const
 {
 	return categorie_;
 }
-
-Produit ** Rayon::obtenirTousProduits() const
+/**
+* Accesseur du vecteur de pointeurs tousProduits_
+*/
+vector <Produit*> Rayon::obtenirTousProduits() const
 {
-	return tousProduits_;
+	return tousProduits_ ;
 }
 
-int Rayon::obtenirCapaciteProduits() const
-{
-	return capaciteProduits_;
-}
 
 // Methodes de modification
+/**
+* Modifie la valeur de categorie_ par la valeur cat passee en parametre
+*/
 void Rayon::modifierCategorie(const string& cat)
 {
 	categorie_ = cat;
 }
 
-void Rayon::ajouterProduit(Produit * produit)
+/**
+* Ajoute un pointeur vers un produit à la fin du vecteur et retourne le rayon mise a jour.
+*/
+Rayon& Rayon::operator+=(Produit* produit)
 {
-	if (tousProduits_ != nullptr)
-	{
-		if (nombreProduits_ >= capaciteProduits_)
-		{
-			Produit ** temp;
-			capaciteProduits_ += 5;
-			temp = new Produit*[capaciteProduits_];
-			for (int i = 0; i < nombreProduits_; i++)
-				temp[i] = tousProduits_[i];
-			delete[] tousProduits_;
-			tousProduits_ = temp;
-
-		}
-		tousProduits_[nombreProduits_++] = produit;
-	}
-	else
-	{
-		capaciteProduits_ = 5;
-		tousProduits_ = new Produit*[capaciteProduits_];
-		tousProduits_[nombreProduits_++] = produit;
-	}
+	tousProduits_.push_back(produit);
+	return *this;
 }
-
-void Rayon::afficher() const
+/**
+* Compte le nombre de fois qu'apparait un produit passé en parametres dans le rayon
+*/
+int Rayon::compterDoublons(const Produit& produit)
 {
-	cout << "Le rayon " << categorie_ << ": " << endl;
-	for (int i = 0; i < nombreProduits_; i++) {
-		cout << "----> ";
-		tousProduits_[i]->afficher();
+	int compteur = 0;
+	for (int i = 0; i <tousProduits_.size(); i++)
+	{
+		if (*tousProduits_[i] == produit)
+			compteur++;
 	}
+	return compteur;
+}
+/**
+* Affiche les propriétés du rayon et les produits du rayon
+*/
+ostream& operator<<(ostream &os,Rayon& rayon)
+{
+	os << "Le rayon " << rayon.obtenirCategorie() << ":" << endl;
+	for (int i = 0; i < rayon.obtenirTousProduits().size(); i++)
+	{
+		os << rayon.obtenirTousProduits()[i];
+	}
+	return os;
 }
