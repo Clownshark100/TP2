@@ -20,25 +20,24 @@ public:
 	~Rayon();
 
 	string obtenirCategorie() const;
-	Produit ** obtenirTousProduits() const;
+    vector <Produit*> obtenirTousProduits() const;
 	int obtenirCapaciteProduits() const;
 	int obtenirNombreProduits() const;
 
 	void modifierCategorie(const string& cat);
 
 	// TODO: Cette methode doit etre remplacee par la surchage de l'operateur +=
-	void ajouterProduit(Produit * produit);
+	Rayon& operator+=(Produit * produit);
 	// TODO: Implermenter la methode compterDoublons
 	int compterDoublons(const Produit& produit);
-
 	// TODO: Cette methode doit être remplacee par la surcharge de l'opérateur <<
-	void afficher() const;
+	friend ostream& operator<<(ostream& os, Rayon& rayon);
 
 private:
 	string categorie_;
 
 	// TODO: Remplacer ces attributs par un vecteur de la STL
-	Produit ** tousProduits_;
+	vector <Produit*> tousProduits_;
 	int capaciteProduits_;
 	int nombreProduits_;
 

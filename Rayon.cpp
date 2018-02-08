@@ -8,7 +8,7 @@
 
 Rayon::Rayon(const string& cat) :
 	categorie_{ cat },
-	tousProduits_{ nullptr },
+	tousProduits_{},
 	capaciteProduits_{ 0 },
 	nombreProduits_{ 0 }
 {
@@ -16,8 +16,8 @@ Rayon::Rayon(const string& cat) :
 
 Rayon::~Rayon()
 {
-	if (tousProduits_ != nullptr)
-		delete[] tousProduits_;
+	if (&tousProduits_)
+		delete[] &tousProduits_;
 }
 
 // Methodes d'acces
@@ -26,14 +26,19 @@ string Rayon::obtenirCategorie() const
 	return categorie_;
 }
 
-Produit ** Rayon::obtenirTousProduits() const
+vector <Produit*> Rayon::obtenirTousProduits() const
 {
-	return tousProduits_;
+	return tousProduits_ ;
 }
 
 int Rayon::obtenirCapaciteProduits() const
 {
 	return capaciteProduits_;
+}
+
+int Rayon::obtenirNombreProduits() const
+{
+	return nombreProduits_;
 }
 
 // Methodes de modification
@@ -42,36 +47,36 @@ void Rayon::modifierCategorie(const string& cat)
 	categorie_ = cat;
 }
 
-void Rayon::ajouterProduit(Produit * produit)
-{
-	if (tousProduits_ != nullptr)
-	{
-		if (nombreProduits_ >= capaciteProduits_)
-		{
-			Produit ** temp;
-			capaciteProduits_ += 5;
-			temp = new Produit*[capaciteProduits_];
-			for (int i = 0; i < nombreProduits_; i++)
-				temp[i] = tousProduits_[i];
-			delete[] tousProduits_;
-			tousProduits_ = temp;
 
-		}
-		tousProduits_[nombreProduits_++] = produit;
-	}
-	else
-	{
-		capaciteProduits_ = 5;
-		tousProduits_ = new Produit*[capaciteProduits_];
-		tousProduits_[nombreProduits_++] = produit;
-	}
+Rayon& Rayon::operator+=(Produit* produit)
+{
+	tousProduits_.push_back(produit);
+	nombreProduits_++;
+	capaciteProduits_++;
+	return *this;
 }
 
-void Rayon::afficher() const
+int Rayon::compterDoublons(const Produit& produit)
 {
-	cout << "Le rayon " << categorie_ << ": " << endl;
-	for (int i = 0; i < nombreProduits_; i++) {
-		cout << "----> ";
-		tousProduits_[i]->afficher();
+	int compteur = 0;
+	for (int i = 0; i < nombreProduits_; i++)
+	{
+		if (tousProduits_[i]->obtenirNom() == produit.obtenirNom()
+			&& tousProduits_[i]->obtenirReference() == produit.obtenirReference()
+			&& tousProduits_[i]->obtenirPrix() == produit.obtenirPrix())
+			compteur++;
 	}
+	return compteur;
+}
+
+ostream& operator<<(ostream &os,Rayon& rayon)
+{
+	os << "Le rayon " << rayon.obtenirCategorie() << ":\n";
+	for (int i = 0; i < rayon.obtenirNombreProduits(); i++)
+	{
+		os << "----> nom : " << rayon.obtenirTousProduits()[i]->obtenirNom() <<
+			"	 ref : " << rayon.obtenirTousProduits()[i]->obtenirReference() <<
+			"	prix : " << rayon.obtenirTousProduits()[i]->obtenirPrix() << endl;
+	}
+	return os;
 }
