@@ -8,16 +8,12 @@
 
 Rayon::Rayon(const string& cat) :
 	categorie_{ cat },
-	tousProduits_{},
-	capaciteProduits_{ 0 },
-	nombreProduits_{ 0 }
+	tousProduits_{}
 {
 }
 
 Rayon::~Rayon()
 {
-	if (&tousProduits_)
-		delete[] &tousProduits_;
 }
 
 // Methodes d'acces
@@ -31,15 +27,8 @@ vector <Produit*> Rayon::obtenirTousProduits() const
 	return tousProduits_ ;
 }
 
-int Rayon::obtenirCapaciteProduits() const
-{
-	return capaciteProduits_;
-}
 
-int Rayon::obtenirNombreProduits() const
-{
-	return nombreProduits_;
-}
+
 
 // Methodes de modification
 void Rayon::modifierCategorie(const string& cat)
@@ -51,19 +40,15 @@ void Rayon::modifierCategorie(const string& cat)
 Rayon& Rayon::operator+=(Produit* produit)
 {
 	tousProduits_.push_back(produit);
-	nombreProduits_++;
-	capaciteProduits_++;
 	return *this;
 }
 
 int Rayon::compterDoublons(const Produit& produit)
 {
 	int compteur = 0;
-	for (int i = 0; i < nombreProduits_; i++)
+	for (int i = 0; i <tousProduits_.size(); i++)
 	{
-		if (tousProduits_[i]->obtenirNom() == produit.obtenirNom()
-			&& tousProduits_[i]->obtenirReference() == produit.obtenirReference()
-			&& tousProduits_[i]->obtenirPrix() == produit.obtenirPrix())
+		if (tousProduits_[i] == produit)
 			compteur++;
 	}
 	return compteur;
@@ -72,7 +57,7 @@ int Rayon::compterDoublons(const Produit& produit)
 ostream& operator<<(ostream &os,Rayon& rayon)
 {
 	os << "Le rayon " << rayon.obtenirCategorie() << ":\n";
-	for (int i = 0; i < rayon.obtenirNombreProduits(); i++)
+	for (int i = 0; i < rayon.obtenirTousProduits().size(); i++)
 	{
 		os << "----> nom : " << rayon.obtenirTousProduits()[i]->obtenirNom() <<
 			"	 ref : " << rayon.obtenirTousProduits()[i]->obtenirReference() <<

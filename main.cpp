@@ -51,13 +51,17 @@ int main()
 	sport.modifierCategorie("sport");
 
 	// Ajoutez les 10 premiers produits de dans le rayon créé
-
+	for (int i = 0; i < 10; i++)
+	{
+		sport += produits[i];
+	}
 	// Ajoutez encore une fois le produit p0 dans le rayon sport
-
+	sport += produits[0];
 	// Affichez le contenu du rayon
-
+	cout << sport;
 	// Affichez le nombre de doublons du premier produit dans le rayon sport
-
+	cout << "Le nombre de doublons du produit " << sport.obtenirTousProduits()[0]->obtenirNom() << " : "
+		<< sport.compterDoublons(*sport.obtenirTousProduits()[0]) << endl;
 	// Creation d'un client
 	Client martine("Bellaiche", "Martine", 1111, "H2T3A6", 199004);
 
@@ -80,4 +84,12 @@ int main()
 	// Afichez le produit le plus cher du panier de martine
 
 	// Terminer le programme correctement
+	delete unProduit;
+	unProduit = nullptr;
+	for (int i = 0; i < NB_PRODUCTS; i++) 
+	{
+		delete produits[i];
+		produits[i] = nullptr;
+	}
+	return 0;
 }

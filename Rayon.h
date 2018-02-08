@@ -21,8 +21,6 @@ public:
 
 	string obtenirCategorie() const;
     vector <Produit*> obtenirTousProduits() const;
-	int obtenirCapaciteProduits() const;
-	int obtenirNombreProduits() const;
 
 	void modifierCategorie(const string& cat);
 
@@ -38,7 +36,5 @@ private:
 
 	// TODO: Remplacer ces attributs par un vecteur de la STL
 	vector <Produit*> tousProduits_;
-	int capaciteProduits_;
-	int nombreProduits_;
 
 };
