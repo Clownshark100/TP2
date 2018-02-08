@@ -5,6 +5,7 @@
 *******************************************/
 
 #include "Produit.h"
+#include "Rayon.h"
 
 Produit::Produit(const string& nom, int reference, double prix) :
 	nom_{ nom },
@@ -45,9 +46,36 @@ void Produit::modifierPrix(double prix)
 	prix_ = prix;
 }
 
+bool Produit::operator>(Produit& produit)
+{
+	return this->obtenirPrix() > produit.obtenirPrix();
+}
+
+
+bool Produit::operator<(Produit& produit)
+{
+	return this->obtenirPrix() < produit.obtenirPrix();
+}
+
+bool Produit::operator==(Produit & produit)
+{
+	return this->obtenirNom()       == produit.obtenirNom()
+		&& this->obtenirPrix()      == produit.obtenirPrix()
+		&& this->obtenirReference() == produit.obtenirReference();
+}
+
 void Produit::afficher() const
 {
 	cout << "nom : " << nom_ 
 			  << "\t ref : " << reference_ 
 			  << "\t prix : " << prix_;
+}
+
+ostream& operator<<(ostream& os, Produit& produit) {
+
+	os << "----> nom  : " <<  produit.obtenirNom()
+	   << "	     ref  : " << produit.obtenirReference()
+	   << "	     prix : " << produit.obtenirPrix() << endl;
+
+	return os;
 }
