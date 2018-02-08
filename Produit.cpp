@@ -73,9 +73,9 @@ void Produit::afficher() const
 
 ostream& operator<<(ostream& os, Produit& produit) {
 
-	os << "----> nom  : " <<  produit.obtenirNom()
-	   << "	     ref  : " << produit.obtenirReference()
-	   << "	     prix : " << produit.obtenirPrix() << endl;
+	os << "----> nom : " <<  produit.obtenirNom()
+	   << "	 ref : " << produit.obtenirReference()
+	   << "	prix : " << produit.obtenirPrix() << endl;
 
 	return os;
 }
