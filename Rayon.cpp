@@ -62,7 +62,7 @@ int Rayon::compterDoublons(const Produit& produit)
 	int compteur = 0;
 	for (int i = 0; i <tousProduits_.size(); i++)
 	{
-		if (tousProduits_[i] == produit)
+		if (*tousProduits_[i] == produit)
 			compteur++;
 	}
 	return compteur;
@@ -72,7 +72,7 @@ int Rayon::compterDoublons(const Produit& produit)
 */
 ostream& operator<<(ostream &os,Rayon& rayon)
 {
-	os << "Le rayon " << rayon.obtenirCategorie() << ":\n";
+	os << "Le rayon " << rayon.obtenirCategorie() << ":" << endl;
 	for (int i = 0; i < rayon.obtenirTousProduits().size(); i++)
 	{
 		os << rayon.obtenirTousProduits()[i];
