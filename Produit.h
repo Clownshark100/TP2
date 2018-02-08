@@ -25,13 +25,12 @@ public:
 	void modifierReference(int reference);
 	void modifierPrix(double prix);
 
-	// TODO: Ajouter la surcharge de l'op�rateur >
-	// TODO: Ajouter la surcharge de l'op�rateur <
-	// TODO: Ajouter la surcharge de l'operateur ==
-	
-	// TODO: Ajouter la surcharge de l'opérateur >>
+	//surcharges d'operateurs
+	bool operator>(Produit& produit);
+	bool operator<(Produit& produit);
+	bool operator==(Produit& produit);
+	friend ostream& operator<<(ostream& os, Produit& produit);
 
-    // TODO: Cette methode doit �tre remplac�e par la surcharge de l'op�rateur <<
 	void afficher() const;
    
 private:
