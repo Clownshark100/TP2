@@ -5,7 +5,6 @@
 *******************************************/
 
 #include "Produit.h"
-#include "Rayon.h"
 
 Produit::Produit(const string& nom, int reference, double prix) :
 	nom_{ nom },
