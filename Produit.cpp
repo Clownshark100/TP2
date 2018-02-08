@@ -63,13 +63,6 @@ bool Produit::operator==(const Produit & produit) const
 		&& this->obtenirReference() == produit.obtenirReference();
 }
 
-void Produit::afficher() const
-{
-	cout << "nom : " << nom_ 
-			  << "\t ref : " << reference_ 
-			  << "\t prix : " << prix_;
-}
-
 ostream& operator<<(ostream& os, Produit& produit) {
 
 	os << "----> nom : " <<  produit.obtenirNom()

@@ -6,10 +6,7 @@
 
 #include "Panier.h"
 
-Panier::Panier(int capacite) :
-	capaciteContenu_{ capacite },
-	nombreContenu_{ 0 },
-	contenuPanier_{ new Produit *[capaciteContenu_] },
+Panier::Panier() :
 	totalAPayer_{ 0 }
 {
 }
@@ -19,14 +16,14 @@ Panier::~Panier()
 }
 
 // methodes d'accès
-Produit **  Panier::obtenirContenuPanier()const
+vector<Produit*>  Panier::obtenirContenuPanier()const
 {
 	return contenuPanier_;
 }
 
 int Panier::obtenirNombreContenu() const
 {
-	return nombreContenu_;
+	return contenuPanier_.size();
 }
 
 double Panier::obtenirTotalApayer() const
@@ -44,38 +41,33 @@ void Panier::modifierTotalAPayer(double totalAPayer)
 // autres méthodes
 void Panier::ajouter(Produit * prod)
 {
-	if (nombreContenu_ >= capaciteContenu_)
-	{
-		Produit ** temp;
-		capaciteContenu_ *= 2;
-		temp = new Produit*[capaciteContenu_];
-		for (int i = 0; i < nombreContenu_; i++)
-			temp[i] = contenuPanier_[i];
-		delete contenuPanier_;
-		contenuPanier_ = temp;
-	}
-	contenuPanier_[nombreContenu_++] = prod;
-	totalAPayer_ += prod->obtenirPrix();
+	contenuPanier_.push_back(prod);
+	totalAPayer_ += prod->obtenirPrix;
 }
 
 void Panier::livrer()
 {
-	delete[]contenuPanier_;
-	nombreContenu_ = 0;
-	totalAPayer_ = 0;
-	contenuPanier_ = new Produit *[capaciteContenu_];
+	contenuPanier_.clear();
+	totalAPayer_ = 0.0;
 }
 
 Produit * Panier::trouverProduitPlusCher()
 {
-	// TODO: Implementez la methode
-	return nullptr;
+	Produit* plusCher = nullptr;
+	for (int i = 0; contenuPanier_.size(); i++) {
+		if (*contenuPanier_[i] > *plusCher) {
+			plusCher = contenuPanier_[i];
+		}
+	}
+	return plusCher;
 }
 
-void Panier::afficher() const
-{
-	for (int i = 0; i < nombreContenu_; i++)
-		contenuPanier_[i]->afficher();
+ostream& operator<<(ostream& os, const Panier& panier) {
 
-	cout << "----> total a payer : " << totalAPayer_ << endl;
+	for (int i = 0; i < panier.obtenirNombreContenu(); i++)
+		os << *(panier.obtenirContenuPanier()[i]);
+
+	os << "----> total a payer : " << panier.obtenirTotalApayer() << endl;
+
+	return os;
 }

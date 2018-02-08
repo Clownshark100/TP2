@@ -12,14 +12,13 @@ Client::Client(const string&  nom, const string& prenom, int identifiant, const 
 	identifiant_{ identifiant },
 	codePostal_{ codePostal },
 	dateNaissance_{ date },
-	monPanier_{ nullptr }
+	monPanier_{}
 {
 }
 
 Client::~Client()
 {
-	if (monPanier_ != nullptr)
-		delete monPanier_;
+	delete monPanier_;
 }
 
 // Methodes d'acces
@@ -82,23 +81,19 @@ void Client::modifierDateNaissance(long date)
 // Autres méthodes
 void Client::acheter(Produit * prod)
 {
-	if (monPanier_ == nullptr)
-		monPanier_ = new Panier(4);
 	monPanier_->ajouter(prod);
 }
 
 void Client::livrerPanier()
 {
 	monPanier_->livrer();
-	delete monPanier_;
-	monPanier_ = nullptr;
 }
 
 void Client::afficherPanier() const
 {
 	if (monPanier_ != nullptr) {
 		cout << "Le panier de " << prenom_ << ": " << endl;
-		monPanier_->afficher();
+		cout << monPanier_;
 	}
 	else {
 		cout << "Le panier de " <<prenom_ << " est vide !" << endl;
