@@ -1,7 +1,9 @@
 /********************************************
 * Titre: Travail pratique #2 - Panier.h
 * Date: 25 janvier 2018
-* Auteur: Mohammed Esseddik BENYAHIA & Timothée CHAUVIN
+* Auteur: Loic LeBlanc et Daniel Nahum
+*
+* Panier contient les produits qu'un client achete avec le total a payer.
 *******************************************/
 
 #pragma once
@@ -16,31 +18,27 @@ class Panier
 {
 
 public:
-	// TODO: Noubliez pas de retirer la capacite et donc transformer ce constructeur en constructeur par default
-	Panier(int capacite);
+
+	Panier();
 	~Panier();
 
-	Produit **  obtenirContenuPanier()const;
+	vector<const Produit*>  obtenirContenuPanier()const;
 	int obtenirNombreContenu() const;
 	double obtenirTotalApayer() const;
 
 	void modifierTotalAPayer(double totalAPayer);
 
-	// TODO: Adapter l'implementation de ces deux methode pour les rendre compatibles avec le nouveau vecteur
-	void ajouter(Produit * prod);
+	void ajouter(const Produit * prod);
 	void livrer();
 
-	// TODO: Implementez la methode qui retourne le produit le plus cher du panier
-	Produit* trouverProduitPlusCher();
-	// TODO: Cette methode doit être remplacée par la surcharge de l'opérateur <<
-	void afficher() const;
+	const Produit* trouverProduitPlusCher() const;
+
+	friend ostream& operator<<(ostream& os,const Panier& panier);
 
 private:
 	double totalAPayer_;
 
-	// TODO: Remplacer ces attributs par un vecteur de la STL
-	Produit ** contenuPanier_;
-	int  nombreContenu_;
-	int capaciteContenu_;
+	vector<const Produit*> contenuPanier_;
+	
 
 };

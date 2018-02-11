@@ -21,12 +21,12 @@ public:
 	~Rayon();
 
 	string obtenirCategorie() const;
-    vector <Produit*> obtenirTousProduits() const;
+    vector <const Produit*> obtenirTousProduits() const;
 
 	void modifierCategorie(const string& cat);
 
 	
-	Rayon& operator+=(Produit * produit);
+	Rayon& operator+=(const Produit * produit);
 	
 	int compterDoublons(const Produit& produit) const;
 	
@@ -35,6 +35,6 @@ public:
 private:
 	string categorie_;
 
-	vector <Produit*> tousProduits_;
+	vector <const Produit*> tousProduits_;
 
 };
