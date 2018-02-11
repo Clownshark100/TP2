@@ -42,7 +42,7 @@ void Panier::modifierTotalAPayer(double totalAPayer)
 void Panier::ajouter(Produit * prod)
 {
 	contenuPanier_.push_back(prod);
-	totalAPayer_ += prod->obtenirPrix;
+	totalAPayer_ += prod->obtenirPrix();
 }
 
 void Panier::livrer()
@@ -51,15 +51,18 @@ void Panier::livrer()
 	totalAPayer_ = 0.0;
 }
 
-Produit * Panier::trouverProduitPlusCher()
+Produit* Panier::trouverProduitPlusCher()
 {
-	Produit* plusCher = nullptr;
-	for (int i = 0; contenuPanier_.size(); i++) {
-		if (*contenuPanier_[i] > *plusCher) {
+	
+	Produit* plusCher = new Produit();
+	for (int i = 0; i < contenuPanier_.size(); i++) {
+		if ( *(contenuPanier_[i]) > *plusCher ) {
 			plusCher = contenuPanier_[i];
 		}
 	}
 	return plusCher;
+
+	//return new Produit("fuck", 666, 66.6);
 }
 
 ostream& operator<<(ostream& os, const Panier& panier) {

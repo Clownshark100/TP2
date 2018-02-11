@@ -16,6 +16,7 @@ class Client
 
 public:
 	Client(const string&  nom, const string& prenom, int identifiant, const string& codePostal, long date);
+	Client(Client& copie);
 	~Client();
 
 	// TODO: Ajouter un constructeur par copie si necessaire
@@ -37,12 +38,12 @@ public:
 	void acheter(Produit * prod);
 	void livrerPanier();
 
-	// TODO: Surcharger l'operateur d'affectation =
-	// TODO: Surcharger l'operateur == (client == identifiant)
+	void operator=(Client& client);
 
-	// TODO: Surcharger l'operateur == (identifiant == client)
-	// TODO: Cette methode doit être remplacée par la surcharge de l'opérateur <<
-	void afficherPanier() const;
+	friend bool operator==(const int id, const Client& client);
+	bool operator==(int id) const;
+
+	friend ostream& operator<<(ostream& os, const Client& client);
 
 private:
 	string nom_;
@@ -53,3 +54,4 @@ private:
 	Panier *  monPanier_;
 
 };
+

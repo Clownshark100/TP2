@@ -31,7 +31,7 @@ public:
 
 	Produit* trouverProduitPlusCher();
 
-	friend ostream& operator<<(ostream& os,const Produit& produit);
+	friend ostream& operator<<(ostream& os,const Panier& panier);
 
 private:
 	double totalAPayer_;
