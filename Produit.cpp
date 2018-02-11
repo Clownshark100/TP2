@@ -86,7 +86,7 @@ bool Produit::operator==(const Produit & produit) const
 /**
 *Affiche l'information du produit.
 */
-ostream& operator<<(ostream& os, Produit& produit) {
+ostream& operator<<(ostream& os, const Produit& produit) {
 
 	os << "----> nom : " <<  produit.obtenirNom()
 	   << "	 ref : " << produit.obtenirReference()

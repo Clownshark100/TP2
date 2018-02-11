@@ -23,7 +23,7 @@ Panier::~Panier()
 /**
 * Accesseur du vecteur de pointeurs contenuPanier_
 */
-vector<Produit*>  Panier::obtenirContenuPanier()const
+vector<const Produit*>  Panier::obtenirContenuPanier()const
 {
 	return contenuPanier_;
 }
@@ -55,7 +55,7 @@ void Panier::modifierTotalAPayer(double totalAPayer)
 /**
 * Ajoute un produit au panier
 */
-void Panier::ajouter(Produit * prod)
+void Panier::ajouter(const Produit * prod)
 {
 	contenuPanier_.push_back(prod);
 	totalAPayer_ += prod->obtenirPrix();
@@ -71,10 +71,10 @@ void Panier::livrer()
 /**
 * Compare le prix des produits dans le panier et retourne le produit le plus cher du panier.
 */
-Produit* Panier::trouverProduitPlusCher()const
+const Produit* Panier::trouverProduitPlusCher()const
 {
 	
-	Produit* plusCher = new Produit();
+	const Produit* plusCher = new Produit();
 	for (int i = 0; i < contenuPanier_.size(); i++) {
 		if ( *(contenuPanier_[i]) > *plusCher ) {
 			plusCher = contenuPanier_[i];

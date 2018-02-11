@@ -31,7 +31,7 @@ string Rayon::obtenirCategorie() const
 /**
 * Accesseur du vecteur de pointeurs tousProduits_
 */
-vector <Produit*> Rayon::obtenirTousProduits() const
+vector <const Produit*> Rayon::obtenirTousProduits() const
 {
 	return tousProduits_ ;
 }
@@ -49,7 +49,7 @@ void Rayon::modifierCategorie(const string& cat)
 /**
 * Ajoute un pointeur vers un produit à la fin du vecteur et retourne le rayon mise a jour.
 */
-Rayon& Rayon::operator+=(Produit* produit)
+Rayon& Rayon::operator+=(const Produit* produit)
 {
 	tousProduits_.push_back(produit);
 	return *this;

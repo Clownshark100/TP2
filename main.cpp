@@ -17,9 +17,10 @@ using namespace std;
 
 /**
 *Répondez aux questions ici :
-* 1/ Le constructeur par copie permet de faire un deep copy d'un objet et operator= de copier les attributs.
-* 2/ Lorsque un attribut est un pointeur puisque sinon, on aura 2 pointeurs qui pointent au meme endroit.
-* 3/ le constructeur crée un nouvel objet ou on lui donne les valeurs des attributs copies par l'operateur =.
+* 1/ Le constructeur par copie permet de créer une copie d'un objet alors que l'operator= sert plutôt à copier les attributs d'un objet pour faire la copie d'un objet à un espace préalloué de ce type.
+* 2/ Lorsque un attribut est un pointeur à une propriété non-constante puisque sinon, on aura 2 pointeurs qui pointent au meme endroit et deux objets seront modifiés lors de la modification d'une seule propritété.
+* 3/ Le constructeur crée un nouvel objet, et donc alloue un nouvel espace mémoire, et on lui donne les valeurs des attributs de l'objet copié. 
+*    L'opérateur =, en général effectuera plutôt une copie de l'objet à un emplacement mémoire déjà alloué.
 **/
 
 int main()

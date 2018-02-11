@@ -22,23 +22,23 @@ public:
 	Panier();
 	~Panier();
 
-	vector<Produit*>  obtenirContenuPanier()const;
+	vector<const Produit*>  obtenirContenuPanier()const;
 	int obtenirNombreContenu() const;
 	double obtenirTotalApayer() const;
 
 	void modifierTotalAPayer(double totalAPayer);
 
-	void ajouter(Produit * prod);
+	void ajouter(const Produit * prod);
 	void livrer();
 
-	Produit* trouverProduitPlusCher() const;
+	const Produit* trouverProduitPlusCher() const;
 
 	friend ostream& operator<<(ostream& os,const Panier& panier);
 
 private:
 	double totalAPayer_;
 
-	vector<Produit*> contenuPanier_;
+	vector<const Produit*> contenuPanier_;
 	
 
 };

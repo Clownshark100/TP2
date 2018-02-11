@@ -31,7 +31,7 @@ public:
 	bool operator>(const Produit& produit) const;
 	bool operator<(const Produit& produit) const;
 	bool operator==(const Produit& produit) const;
-	friend ostream& operator<<(ostream& os, Produit& produit);
+	friend ostream& operator<<(ostream& os, const Produit& produit);
    
 private:
 	string nom_;

@@ -20,7 +20,7 @@ Client::Client(const string&  nom, const string& prenom, int identifiant, const 
 /**
 *Constructeurs par copie de client
 */
-Client::Client(Client& copie) :
+Client::Client(const Client& copie) :
 	nom_{ copie.nom_ },
 	prenom_{ copie.prenom_ },
 	identifiant_{ copie.identifiant_},
@@ -113,7 +113,7 @@ void Client::modifierCodePostal(const string& codePostal)
 /**
 * Modifie la date de naissance du client
 */
-void Client::modifierDateNaissance(long date)
+void Client::modifierDateNaissance(const long date)
 {
 	dateNaissance_ = date;
 }
@@ -122,7 +122,7 @@ void Client::modifierDateNaissance(long date)
 /**
 * Ajoute un produit au panier du client
 */
-void Client::acheter(Produit * prod)
+void Client::acheter(const Produit * prod)
 {
 	monPanier_->ajouter(prod);
 }
@@ -152,7 +152,7 @@ void Client::operator=(const Client& client)
 /**
 * Operateur qui compare l'indentifiant de client.
 */
-bool Client::operator==(int id) const
+bool Client::operator==(const int id) const
 {
 	return identifiant_ == id;
 }

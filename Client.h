@@ -18,7 +18,7 @@ class Client
 
 public:
 	Client(const string&  nom, const string& prenom, int identifiant, const string& codePostal, long date);
-	Client(Client& copie);
+	Client(const Client& copie);
 	~Client();
 
 	// TODO: Ajouter un constructeur par copie si necessaire
@@ -32,12 +32,12 @@ public:
 
 	void modifierNom(const string& nom);
 	void modifierPrenom(const string& prenom);
-	void modifierIdentifiant(int identifiant);
+	void modifierIdentifiant(const int identifiant);
 	void modifierCodePostal(const string& codePostal);
 	void modifierDateNaissance(long date);
 
 	// Adapter l'implementation de la methode acheter si besion
-	void acheter(Produit * prod);
+	void acheter(const Produit * prod);
 	void livrerPanier(); 
 
 	void operator=(const Client& client);
