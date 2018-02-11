@@ -1,7 +1,9 @@
 /********************************************
 * Titre: Travail pratique #2 - Panier.h
 * Date: 25 janvier 2018
-* Auteur: Mohammed Esseddik BENYAHIA & Timothée CHAUVIN
+* Auteur: Loic LeBlanc et Daniel Nahum
+*
+* Panier contient les produits qu'un client achete avec le total a payer.
 *******************************************/
 
 #pragma once
@@ -29,7 +31,7 @@ public:
 	void ajouter(Produit * prod);
 	void livrer();
 
-	Produit* trouverProduitPlusCher();
+	Produit* trouverProduitPlusCher() const;
 
 	friend ostream& operator<<(ostream& os,const Panier& panier);
 

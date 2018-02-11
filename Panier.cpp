@@ -1,57 +1,77 @@
 /********************************************
 * Titre: Travail pratique #2 - Panier.cpp
 * Date: 25 janvier 2018
-* Auteur: Mohammed Esseddik BENYAHIA & Timothée CHAUVIN
+* Auteur: Loic LeBlanc
 *******************************************/
 
 #include "Panier.h"
-
+/**
+* Constructeur par default de panier.
+*/
 Panier::Panier() :
 	totalAPayer_{ 0 }
 {
 }
-
+/**
+* Destructeur de Panier, rien a faire.
+*/
 Panier::~Panier()
 {
 }
 
 // methodes d'accès
+/**
+* Accesseur du vecteur de pointeurs contenuPanier_
+*/
 vector<Produit*>  Panier::obtenirContenuPanier()const
 {
 	return contenuPanier_;
 }
-
+/**
+* Accesseur de nombre de produits dans panier.
+*/
 int Panier::obtenirNombreContenu() const
 {
 	return contenuPanier_.size();
 }
-
+/**
+* Accesseur du total a payer 
+*/
 double Panier::obtenirTotalApayer() const
 {
 	return totalAPayer_;
 }
-
+// méthodes de modification
+/**
+* Modifie le total a payer
+*/
 void Panier::modifierTotalAPayer(double totalAPayer)
 {
 	totalAPayer_ = totalAPayer;
 }
 
-// méthodes de modification
 
 // autres méthodes
+/**
+* Ajoute un produit au panier
+*/
 void Panier::ajouter(Produit * prod)
 {
 	contenuPanier_.push_back(prod);
 	totalAPayer_ += prod->obtenirPrix();
 }
-
+/**
+* Vide le panier et remet le total a payer a zero
+*/
 void Panier::livrer()
 {
 	contenuPanier_.clear();
 	totalAPayer_ = 0.0;
 }
-
-Produit* Panier::trouverProduitPlusCher()
+/**
+* Compare le prix des produits dans le panier et retourne le produit le plus cher du panier.
+*/
+Produit* Panier::trouverProduitPlusCher()const
 {
 	
 	Produit* plusCher = new Produit();
@@ -62,9 +82,10 @@ Produit* Panier::trouverProduitPlusCher()
 	}
 	return plusCher;
 
-	//return new Produit("fuck", 666, 66.6);
 }
-
+/**
+* Affiche le contenu du panier ainsi que le total a payer.
+*/
 ostream& operator<<(ostream& os, const Panier& panier) {
 
 	for (int i = 0; i < panier.obtenirNombreContenu(); i++)

@@ -1,7 +1,9 @@
 /********************************************
 * Titre: Travail pratique #2 - Produit.h
 * Date: 25 janvier 2018
-* Auteur: Mohammed Esseddik BENYAHIA & Timoth�e CHAUVIN
+* Auteur: Loic LeBlanc et Daniel Nahum
+*
+* La classe Produit gere l'information d'un produit
 *******************************************/
 
 #pragma once

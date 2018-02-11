@@ -1,7 +1,9 @@
 /********************************************
 * Titre: Travail pratique #2 - Client.h
 * Date: 25 janvier 2018
-* Auteur: Mohammed Esseddik BENYAHIA & Timothée CHAUVIN
+* Auteur: Loic Leblanc et Daniel Nahum
+* 
+* La classe Client contient l'information du client et lui permet de gèrer son panier.
 *******************************************/
 
 #pragma once
@@ -36,9 +38,9 @@ public:
 
 	// Adapter l'implementation de la methode acheter si besion
 	void acheter(Produit * prod);
-	void livrerPanier();
+	void livrerPanier(); 
 
-	void operator=(Client& client);
+	void operator=(const Client& client);
 
 	friend bool operator==(const int id, const Client& client);
 	bool operator==(int id) const;
