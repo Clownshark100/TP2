@@ -57,7 +57,7 @@ Rayon& Rayon::operator+=(Produit* produit)
 /**
 * Compte le nombre de fois qu'apparait un produit passé en parametres dans le rayon
 */
-int Rayon::compterDoublons(const Produit& produit)
+int Rayon::compterDoublons(const Produit& produit) const
 {
 	int compteur = 0;
 	for (int i = 0; i <tousProduits_.size(); i++)
@@ -70,7 +70,7 @@ int Rayon::compterDoublons(const Produit& produit)
 /**
 * Affiche les propriétés du rayon et les produits du rayon
 */
-ostream& operator<<(ostream &os,Rayon& rayon)
+ostream& operator<<(ostream &os,const Rayon& rayon)
 {
 	os << "Le rayon " << rayon.obtenirCategorie() << ":" << endl;
 	for (int i = 0; i < rayon.obtenirTousProduits().size(); i++)

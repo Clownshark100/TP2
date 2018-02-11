@@ -28,9 +28,9 @@ public:
 	
 	Rayon& operator+=(Produit * produit);
 	
-	int compterDoublons(const Produit& produit);
+	int compterDoublons(const Produit& produit) const;
 	
-	friend ostream& operator<<(ostream& os, Rayon& rayon);
+	friend ostream& operator<<(ostream& os,const Rayon& rayon);
 
 private:
 	string categorie_;

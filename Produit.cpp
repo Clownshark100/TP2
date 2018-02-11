@@ -45,13 +45,13 @@ void Produit::modifierPrix(double prix)
 	prix_ = prix;
 }
 
-bool Produit::operator>(Produit& produit)
+bool Produit::operator>(const Produit& produit) const
 {
 	return this->obtenirPrix() > produit.obtenirPrix();
 }
 
 
-bool Produit::operator<(Produit& produit)
+bool Produit::operator<(const Produit& produit) const
 {
 	return this->obtenirPrix() < produit.obtenirPrix();
 }
